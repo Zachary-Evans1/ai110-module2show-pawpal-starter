@@ -10,13 +10,15 @@ class Constraint:
 
 @dataclass
 class Task:
-    """Represents a pet care task."""
+    """Represents a single pet care activity (task)."""
     id: int
     name: str
-    priority: int
-    completed: bool = False
-    duration: int = 0
+    description: str
+    frequency: str = "once"
     time_of_day: str | None = None
+    completed: bool = False
+    priority: int = 0
+    duration: int = 0
 
     def mark_completed(self) -> None:
         pass
@@ -48,9 +50,8 @@ class Pet:
 
 
 @dataclass
-class Planner:
-    """Generates and explains daily pet care plans."""
-    constraints: str
+class Scheduler:
+    """The 'brain' that retrieves, organizes, and manages tasks across pets."""
     current_pet: Pet | None = None
     plan_date: str | None = None
     constraint_list: list[Constraint] = field(default_factory=list)
@@ -65,10 +66,10 @@ class Planner:
 
 
 @dataclass
-class PawPal:
-    """Main application that manages pets and generates care plans."""
+class Owner:
+    """Manages multiple pets and provides access to all their tasks."""
     pets: list[Pet] = field(default_factory=list)
-    planner: Planner | None = None
+    scheduler: Scheduler | None = None
 
     def add_pet(self, pet: Pet) -> None:
         pass
@@ -79,5 +80,5 @@ class PawPal:
     def get_pet(self, pet_id: int) -> Pet:
         pass
 
-    def run_planner(self, pet: Pet) -> None:
+    def run_scheduler(self, pet: Pet) -> None:
         pass

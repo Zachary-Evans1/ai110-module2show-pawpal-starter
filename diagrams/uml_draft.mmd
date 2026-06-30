@@ -2,10 +2,12 @@ classDiagram
     class Task {
         -int id
         -string name
-        -int priority
-        -boolean completed
-        -int duration
+        -string description
+        -string frequency
         -string|null time_of_day
+        -boolean completed
+        -int priority
+        -int duration
         +mark_completed()
         +update_priority(priority)
         +update_duration(duration)
@@ -27,8 +29,7 @@ classDiagram
         -string value
     }
 
-    class Planner {
-        -string constraints
+    class Scheduler {
         -Pet|null current_pet
         -string|null plan_date
         -Constraint[] constraint_list
@@ -38,17 +39,17 @@ classDiagram
         +explain_plan()
     }
 
-    class PawPal {
+    class Owner {
         -Pet[] pets
-        -Planner|null planner
+        -Scheduler|null scheduler
         +add_pet(pet)
         +remove_pet(pet_id)
         +get_pet(pet_id)
-        +run_planner(pet)
+        +run_scheduler(pet)
     }
 
     Pet "1" o-- "*" Task : contains
-    Planner "1" o-- "*" Constraint : uses
-    Planner "1" --> "1" Pet : plans for
-    PawPal "1" o-- "*" Pet : manages
-    PawPal "1" o-- "1" Planner : uses
+    Scheduler "1" o-- "*" Constraint : uses
+    Scheduler "1" --> "1" Pet : plans for
+    Owner "1" o-- "*" Pet : manages
+    Owner "1" o-- "1" Scheduler : uses
