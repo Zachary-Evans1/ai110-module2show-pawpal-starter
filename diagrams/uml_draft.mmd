@@ -1,0 +1,60 @@
+classDiagram
+    class Pet {
+        -string petName
+        -string petBreed
+        -string ownerName
+        -Task[] taskList
+        +add_task(task)
+        +remove_task(task_id)
+        +get_tasks()
+        +getPetName()
+        +setPetName(name)
+        +getPetBreed()
+        +setPetBreed(breed)
+        +getOwnerName()
+        +setOwnerName(name)
+    }
+
+    class Task {
+        -string taskName
+        -int priority
+        -boolean completed
+        -int duration
+        +mark_completed()
+        +update_priority(priority)
+        +update_duration(duration)
+        +getTaskName()
+        +setTaskName(name)
+        +getPriority()
+        +setPriority(priority)
+        +isCompleted()
+        +getDuration()
+        +setDuration(duration)
+    }
+
+    class Planner {
+        -string constraints
+        -string explanation
+        -string dailyPlan
+        +generate_daily_plan(pet)
+        +explain_plan()
+        +getConstraints()
+        +setConstraints(constraints)
+        +getExplanation()
+        +getDailyPlan()
+    }
+
+    class PawPal {
+        -Pet[] pets
+        -Planner planner
+        +add_pet(pet)
+        +remove_pet(pet_id)
+        +get_pet(pet_id)
+        +run_planner(pet)
+        +getPets()
+    }
+
+    Pet "1" o-- "*" Task : contains
+    PawPal "1" o-- "*" Pet : manages
+    PawPal "1" o-- "1" Planner : uses
+    Planner --> Pet : plans for
