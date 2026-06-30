@@ -11,7 +11,7 @@ The three core actions I came up with are the following:
 
 - Briefly describe your initial UML design.
 
-My initial UML design was focused on breaking the system into four main classes, Pet, Task, Planner, and PawPal. Each class was designed to represent a clear part of the pet care app and keep responsibilities seperate.
+My initial UML design was focused on breaking the system into four main classes, Pet, Task, Planner, and PawPal. Each class was designed to represent a clear part of the pet care app and keep responsibilities separate.
 
 - What classes did you include, and what responsibilities did you assign to each?
 
@@ -19,7 +19,7 @@ I originally designed four classes,  Pet, Task, Planner, and PawPal,
 
 The Pet classes responsibilities is to store information about a pet, such as its name, breed/type, owner and a list of tasks for the pet. It also manages adding, removing and retrieving tasks for a specific task.
 
-The Task classes responsibilities is to represent individual pet care activites, like feeding or walking the animal. It stores details like the task name, priority, duration, and the tasks completion status. It also inludes methods for updating these values.
+The Task classes responsibilities is to represent individual pet care activities, like feeding or walking the animal. It stores details like the task name, priority, duration, and the tasks completion status. It also includes methods for updating these values.
 
 The Planner class was responsible for generating a daily care plan based on a pet's tasks and any constraints. It also stores the generated schedule and an explanation of why a specific daily plan was generated.
 
@@ -34,8 +34,6 @@ Yes, it did.
 - If yes, describe at least one change and why you made it.
 
 One major change I made was removing the getters and setters and making the code overall more pythonic. I made this change because it made each class have unnecessary functions, that I only put in because I am more used to Java/C++.
-
-Another change was renaming and restructuring two of my classes to better match the assignment. Planner was changed into Scheduler, and PawPal was changed into Owner to better reflect their responsibilities in the system.
 
 ---
 
