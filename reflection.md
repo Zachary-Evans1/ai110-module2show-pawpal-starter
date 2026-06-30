@@ -2,6 +2,11 @@
 
 ## 1. System Design
 
+The three core actions I came up with are the following:
+1. Add a pet, and add any tasks you want to track with that pet.
+2. View a pets daily plan, and be able to read the explanation given with that plan.
+3. Set owner constraints and preferences
+
 **a. Initial design**
 
 - Briefly describe your initial UML design.

@@ -1,13 +1,22 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+
+@dataclass
+class Constraint:
+    """Represents a constraint for pet care tasks (e.g., time range, allergies, duration limits)."""
+    constraint_type: str
+    value: str
 
 
 @dataclass
 class Task:
     """Represents a pet care task."""
-    taskName: str
+    id: int
+    name: str
     priority: int
-    completed: bool
-    duration: int
+    completed: bool = False
+    duration: int = 0
+    time_of_day: str | None = None
 
     def mark_completed(self) -> None:
         pass
@@ -18,35 +27,15 @@ class Task:
     def update_duration(self, duration: int) -> None:
         pass
 
-    def getTaskName(self) -> str:
-        pass
-
-    def setTaskName(self, name: str) -> None:
-        pass
-
-    def getPriority(self) -> int:
-        pass
-
-    def setPriority(self, priority: int) -> None:
-        pass
-
-    def isCompleted(self) -> bool:
-        pass
-
-    def getDuration(self) -> int:
-        pass
-
-    def setDuration(self, duration: int) -> None:
-        pass
-
 
 @dataclass
 class Pet:
     """Represents a pet with associated tasks."""
-    petName: str
-    petBreed: str
-    ownerName: str
-    taskList: list[Task]
+    id: int
+    name: str
+    breed: str
+    owner_name: str
+    tasks: list[Task] = field(default_factory=list)
 
     def add_task(self, task: Task) -> None:
         pass
@@ -57,31 +46,16 @@ class Pet:
     def get_tasks(self) -> list[Task]:
         pass
 
-    def getPetName(self) -> str:
-        pass
-
-    def setPetName(self, name: str) -> None:
-        pass
-
-    def getPetBreed(self) -> str:
-        pass
-
-    def setPetBreed(self, breed: str) -> None:
-        pass
-
-    def getOwnerName(self) -> str:
-        pass
-
-    def setOwnerName(self, name: str) -> None:
-        pass
-
 
 @dataclass
 class Planner:
     """Generates and explains daily pet care plans."""
     constraints: str
-    explanation: str
-    dailyPlan: str
+    current_pet: Pet | None = None
+    plan_date: str | None = None
+    constraint_list: list[Constraint] = field(default_factory=list)
+    explanation: str = ""
+    daily_plan: str = ""
 
     def generate_daily_plan(self, pet: Pet) -> None:
         pass
@@ -89,24 +63,12 @@ class Planner:
     def explain_plan(self) -> None:
         pass
 
-    def getConstraints(self) -> str:
-        pass
-
-    def setConstraints(self, constraints: str) -> None:
-        pass
-
-    def getExplanation(self) -> str:
-        pass
-
-    def getDailyPlan(self) -> str:
-        pass
-
 
 @dataclass
 class PawPal:
     """Main application that manages pets and generates care plans."""
-    pets: list[Pet]
-    planner: Planner
+    pets: list[Pet] = field(default_factory=list)
+    planner: Planner | None = None
 
     def add_pet(self, pet: Pet) -> None:
         pass
@@ -118,7 +80,4 @@ class PawPal:
         pass
 
     def run_planner(self, pet: Pet) -> None:
-        pass
-
-    def getPets(self) -> list[Pet]:
         pass

@@ -1,60 +1,54 @@
 classDiagram
-    class Pet {
-        -string petName
-        -string petBreed
-        -string ownerName
-        -Task[] taskList
-        +add_task(task)
-        +remove_task(task_id)
-        +get_tasks()
-        +getPetName()
-        +setPetName(name)
-        +getPetBreed()
-        +setPetBreed(breed)
-        +getOwnerName()
-        +setOwnerName(name)
-    }
-
     class Task {
-        -string taskName
+        -int id
+        -string name
         -int priority
         -boolean completed
         -int duration
+        -string|null time_of_day
         +mark_completed()
         +update_priority(priority)
         +update_duration(duration)
-        +getTaskName()
-        +setTaskName(name)
-        +getPriority()
-        +setPriority(priority)
-        +isCompleted()
-        +getDuration()
-        +setDuration(duration)
+    }
+
+    class Pet {
+        -int id
+        -string name
+        -string breed
+        -string owner_name
+        -Task[] tasks
+        +add_task(task)
+        +remove_task(task_id)
+        +get_tasks()
+    }
+
+    class Constraint {
+        -string constraint_type
+        -string value
     }
 
     class Planner {
         -string constraints
+        -Pet|null current_pet
+        -string|null plan_date
+        -Constraint[] constraint_list
         -string explanation
-        -string dailyPlan
+        -string daily_plan
         +generate_daily_plan(pet)
         +explain_plan()
-        +getConstraints()
-        +setConstraints(constraints)
-        +getExplanation()
-        +getDailyPlan()
     }
 
     class PawPal {
         -Pet[] pets
-        -Planner planner
+        -Planner|null planner
         +add_pet(pet)
         +remove_pet(pet_id)
         +get_pet(pet_id)
         +run_planner(pet)
-        +getPets()
     }
 
     Pet "1" o-- "*" Task : contains
+    Planner "1" o-- "*" Constraint : uses
+    Planner "1" --> "1" Pet : plans for
     PawPal "1" o-- "*" Pet : manages
     PawPal "1" o-- "1" Planner : uses
-    Planner --> Pet : plans for
