@@ -1,55 +1,42 @@
 classDiagram
+    class Pet {
+        -string petName
+        -string petBreed
+        -string ownerName
+        -Task[] taskList
+        +add_task(task)
+        +remove_task(task_id)
+        +get_tasks()
+    }
+
     class Task {
-        -int id
-        -string name
-        -string description
-        -string frequency
-        -string|null time_of_day
-        -boolean completed
+        -string taskName
         -int priority
+        -boolean completed
         -int duration
         +mark_completed()
         +update_priority(priority)
         +update_duration(duration)
     }
 
-    class Pet {
-        -int id
-        -string name
-        -string breed
-        -string owner_name
-        -Task[] tasks
-        +add_task(task)
-        +remove_task(task_id)
-        +get_tasks()
-    }
-
-    class Constraint {
-        -string constraint_type
-        -string value
-    }
-
-    class Scheduler {
-        -Pet|null current_pet
-        -string|null plan_date
-        -Constraint[] constraint_list
+    class Planner {
+        -string constraints
         -string explanation
-        -string daily_plan
+        -string dailyPlan
         +generate_daily_plan(pet)
         +explain_plan()
     }
 
-    class Owner {
+    class PawPal {
         -Pet[] pets
-        -Scheduler|null scheduler
+        -Planner planner
         +add_pet(pet)
         +remove_pet(pet_id)
         +get_pet(pet_id)
-        +run_scheduler(pet)
+        +run_planner(pet)
     }
 
     Pet "1" o-- "*" Task : contains
-    Scheduler "1" o-- "*" Constraint : uses
-    Scheduler "1" --> "1" Pet : plans for
-    Owner "1" o-- "*" Pet : manages
-    Owner "1" o-- "1" Scheduler : uses
+    PawPal "1" o-- "*" Pet : manages
+    PawPal "1" o-- "1" Planner : uses
+    Planner --> Pet : plans for

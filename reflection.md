@@ -11,19 +11,19 @@ The three core actions I came up with are the following:
 
 - Briefly describe your initial UML design.
 
-My initial UML design was focused on breaking the system into four main classes, Pet, Task, Planner, and PawPal. Each class was designed to represet a clear part of the pet care app and keep responsibilities seperate.
+My initial UML design was focused on breaking the system into four main classes, Pet, Task, Planner, and PawPal. Each class was designed to represent a clear part of the pet care app and keep responsibilities seperate.
 
 - What classes did you include, and what responsibilities did you assign to each?
 
-I created 4 classes,  Pet, Task, Planner, and PawPal,
+I originally designed four classes,  Pet, Task, Planner, and PawPal,
 
-The Pet classes responsibilities is to store information about a pet, such as its name, breed/type, owner and a list of tasks for the pet. It also maages adding, removing and retrieving tasks for a specific task.
+The Pet classes responsibilities is to store information about a pet, such as its name, breed/type, owner and a list of tasks for the pet. It also manages adding, removing and retrieving tasks for a specific task.
 
-The Task classes responsibilities is to represent individual pet care activites, like feeding or walking the animal. It stores details like the task name, prority, duration, and the tasks completion status. It also inludes methods for updating these values.
+The Task classes responsibilities is to represent individual pet care activites, like feeding or walking the animal. It stores details like the task name, priority, duration, and the tasks completion status. It also inludes methods for updating these values.
 
-The Planner classes responsibilities is to generate a daily care plan bvase on a pet's tasks and any constraints. It also stores the fenerated secedule and an explanation of why a specific daily plan was generated.
+The Planner class was responsible for generating a daily care plan based on a pet's tasks and any constraints. It also stores the generated schedule and an explanation of why a specific daily plan was generated.
 
-The PawPal class acts as the main system manager. It stores a list of all pets and connects everything together by allowing pets to be added or removed and by running the planner to generate daily schedules.
+The PawPal class acted as the main system manager. It stored a list of all pets and connected everything together by allowing pets to be added or removed and by running the planner to generate daily schedules.
 
 **b. Design changes**
 
@@ -33,7 +33,9 @@ Yes, it did.
 
 - If yes, describe at least one change and why you made it.
 
-One change I made was removing the getters and setters and making the code overall more pythonic. I made this change because it made each class have unnecessary functions, that I only put in because I am more used to Java/C++. 
+One major change I made was removing the getters and setters and making the code overall more pythonic. I made this change because it made each class have unnecessary functions, that I only put in because I am more used to Java/C++.
+
+Another change was renaming and restructuring two of my classes to better match the assignment. Planner was changed into Scheduler, and PawPal was changed into Owner to better reflect their responsibilities in the system.
 
 ---
 
